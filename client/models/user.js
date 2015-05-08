@@ -1,10 +1,27 @@
 'use strict';
 
-angular.module('poseidon')
-.factory('User', function($rootScope){
+angular.module('homeListings')
+.factory('User', function($rootScope, $http, nodeUrl){
 
-  function User(){
+  function User(obj){
+    this.name = obj.name;
+    this.phone = obj.phone;
+    this.photo = obj.photo;
+    this.email = obj.email;
+    this.avatar = obj.avatar;
   }
+
+  User.prototype.save = function(){
+    return $http.put(nodeUrl + '/users', this);
+  };
+
+  User.show = function(){
+    return $http.get(nodeUrl + '/users');
+  };
+
+  User.oauth = function(provider){
+     return $rootScope.afAuth.$authWithOAuthPopup(provider);
+   };
 
   User.register = function(user){
     return $rootScope.afAuth.$createUser(user);
@@ -16,6 +33,10 @@ angular.module('poseidon')
 
   User.logout = function(){
     return $rootScope.afAuth.$unauth();
+  };
+
+  User.find = function(userId){
+    return $http.get(nodeUrl + '/users/' + userId);
   };
 
   return User;

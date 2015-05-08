@@ -1,0 +1,25 @@
+h2#heading Home Listings
+.row
+  .col-xs-6
+    .form-group
+      label(for='mapZoom') Please enter a City, State, or County to search listings.
+      input.form-control#mapZoom(type='text', name='mapZoom', ng-model='location.mapZoom', placeholder='City, State, Zip Code, County')
+  .col-xs-2
+    label(for='mapZoom') Search
+    button.btn.btn-success#mapZoom(type='submit', ng-click='mapZoom(location)') Go to Location
+.row
+  .col-xs-8
+    #map
+  .col-xs-4
+    form(name='listingForm', novalidate)
+      .form-group
+        h2 Active Listings:
+      .form-group
+        #cardContainer.col-xs-6(ng-repeat='listing in listings' ng-mouseenter='bounceMarker(listing)' ng-mouseleave='bounceMarker(listing)')
+          img.img-responsive.img-thumbnail#photoList(ng-src='{{listing.picture}}')
+          #cardInfo Address: {{listing.address}}
+          #cardInfo Price: {{listing.price | currency}}
+          #cardInfo Square Feet: {{listing.sqft}}
+          #cardInfo BedRooms: {{listing.bedrooms}}
+          #cardInfo BathRooms: {{listing.bathrooms}}
+          btn.btn-sm.btn-success(ng-click='viewUser(listing.userId)').glyphicon.glyphicon-user Visit Profile

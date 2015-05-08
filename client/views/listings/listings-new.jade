@@ -1,0 +1,29 @@
+h2 Create and Update Listings
+
+.row
+  .col-xs-4
+    form(name='userForm', novalidate)
+      .form-group
+        label(for='address') Address
+        input.form-control#address(type='text', name='address', ng-model='listing.address', placeholder='123 Chyld St, Chico, California')
+      .form-group
+        label(for='price') Price
+        input.form-control#price(type='number', name='price', ng-model='listing.price', placeholder='Required')
+      .form-group
+        label(for='sqft') Square Feet
+        input.form-control#sqft(type='number', name='sqft', ng-model='listing.sqft', placeholder='Required')
+      .form-group
+        button.btn.btn-success#update(type='submit', ng-click='update(listing)') List Residence
+  .col-xs-4
+    .form-group
+      label(for='pictureInput') Listing Picture
+      input.form-control#pictureInput(type='url', name='picture', ng-model='listing.picture', placeholder='Optional URL')
+    .form-group
+      label(for='bedrooms') BedRooms
+      input.form-control#bedrooms(type='number', name='bedrooms', ng-model='listing.bedrooms', placeholder='Required')
+    .form-group
+      label(for='bathrooms') BathRooms
+      input.form-control#phone(type='number', name='bathrooms', ng-model='listing.bathrooms', placeholder='Required')
+  .col-xs-4
+    .form-group
+      img.img-responsive.img-thumbnail#picture(ng-src='{{listing.picture}}')

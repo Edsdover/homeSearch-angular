@@ -1,8 +1,8 @@
-# Poseidon
+# homeListings
 
 #### Setup
 ```
-git clone https://github.com/coding-house-apr2015/poseidon my-app
+git clone https://github.com/coding-house-apr2015/homeListings my-app
 cd my-app
 ./setup.sh
 gulp
