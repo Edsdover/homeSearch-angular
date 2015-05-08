@@ -13,6 +13,24 @@ angular.module('homeListings')
     });
   });
 
+  $scope.search = function(query){
+    Map.geocode(query, function(data){
+      var latS = data[0].geometry.location.A;
+      var lngS = data[0].geometry.location.F;
+      $scope.map = Map.create('#map', latS, lngS, 7);
+      var latMin = latS - 0.1;
+      var latMax = latS + 0.1;
+      var lngMin = lngS - 0.1;
+      var lngMax = lngS + 0.1;
+      Listing.show()
+      .then(function(response){
+        $scope.listings = $window._.remove(response.data.listings, function(listing){
+          return ((listing.lat > latMax) || (listing.lat < latMin) || (listing.lng > lngMax) || (listing.lng < lngMin));
+        });
+      });
+    });
+  };
+
   var map = Map.create('#map', 0, -30, 2);
 
   $scope.viewUser = function(userId){

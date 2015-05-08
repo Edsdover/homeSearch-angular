@@ -1,12 +1,15 @@
 h2#heading Home Listings
-.row
+.row#searchBar
   .col-xs-6
     .form-group
       label(for='mapZoom') Please enter a City, State, or County to search listings.
-      input.form-control#mapZoom(type='text', name='mapZoom', ng-model='location.mapZoom', placeholder='City, State, Zip Code, County')
+      input(type='text' ng-model='query' placeholder='City/State/Zip' autofocus='true').form-control
   .col-xs-2
     label(for='mapZoom') Search
-    button.btn.btn-success#mapZoom(type='submit', ng-click='mapZoom(location)') Go to Location
+    button.btn.btn-danger(ng-click='search(query)').form-control: i.fa.fa-search
+.row
+  .col-xs-6
+  .col-xs-2
 .row
   .col-xs-8
     #map
